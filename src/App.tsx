@@ -1,7 +1,6 @@
 import React from "react";
-import "./App.css";
-import MainGame from "./games/MainGame";
-import MainScene from "./scenes/MainScene";
+import MainGame from "./TestGame";
+import MainScene from "./TestGame/Scene";
 
 const handleClick = () => {
   const scene = MainGame.scene.keys["MainScene"] as MainScene;

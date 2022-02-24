@@ -1,4 +1,5 @@
-import Player from "../entities/Player";
+import { Console } from "console";
+import Player from "./entities/Player";
 
 export default class MainScene extends Phaser.Scene {
   constructor(private player: Player) {
@@ -9,11 +10,11 @@ export default class MainScene extends Phaser.Scene {
     Player.preload(this);
     this.load.image(
       "_tiles",
-      `${process.env.PUBLIC_URL}/assets/images/rpg_nature_tileset.png`
+      `${process.env.PUBLIC_URL}/assets/maps/source/mountain_landscape.png`
     );
     this.load.tilemapTiledJSON(
       "_map",
-      `${process.env.PUBLIC_URL}/assets/images/map.json`
+      `${process.env.PUBLIC_URL}/assets/maps/map.json`
     );
   }
 
@@ -23,20 +24,22 @@ export default class MainScene extends Phaser.Scene {
   createEmitter() {
     const map = this.make.tilemap({ key: "_map" });
     const tileset = map.addTilesetImage(
-      "rpg_nature_tileset",
+      "mountain_landscape",
       "_tiles",
-      32,
-      32,
+      16,
+      16,
       0,
       0
     );
-    const layer1 = map.createLayer("Tile Layer 1", tileset, 0, 0);
-    layer1.setCollisionByProperty({ collides: true });
-    this.matter.world.convertTilemapLayer(layer1);
+    const layer1 = map.createLayer("land", tileset, 0, 0);
+    const layer2 = map.createLayer("tile", tileset, 0, 0);
+    const layer3 = map.createLayer("grass", tileset, 0, 0);
+    layer3.setCollisionByProperty({ collides: true });
+    this.matter.world.convertTilemapLayer(layer3);
     this.player = new Player({
       scene: this,
-      x: 100,
-      y: 100,
+      x: 900,
+      y: 950,
       texture: "_charactor",
       frame: "ranger_idle_1",
     });

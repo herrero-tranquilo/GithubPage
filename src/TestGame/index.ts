@@ -1,10 +1,10 @@
 import Phaser from "phaser";
-import MainScene from "../scenes/MainScene";
+import MainScene from "./Scene";
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
 const config: Phaser.Types.Core.GameConfig = {
-  width: 512,
-  height: 512,
+  width: 2048,
+  height: 2048,
   backgroundColor: "#999999",
   type: Phaser.AUTO,
   parent: "",
