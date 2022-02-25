@@ -31,6 +31,10 @@ export default class GameScene extends Phaser.Scene {
     map.createLayer("overlap", [tileset], 0, 0).setDepth(1);
     this.matter.world.convertTilemapLayer(map.getLayer("collide").tilemapLayer);
     this.matter.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    const portals = map.createFromObjects("portal", {});
+    portals.forEach((portal) => {
+      // this.matter.world.c(portal);
+    });
 
     this.player = new Player({
       scene: this,
@@ -39,6 +43,15 @@ export default class GameScene extends Phaser.Scene {
       texture: "_character",
       frame: "character_walk_down_2",
     });
+
     this.cameras.main.startFollow(this.player, true);
+    this.matter.world.on("collisionstart", this.handlePlayerPortalCollision);
+  }
+  private handlePlayerPortalCollision(
+    event: any,
+    obj1: Phaser.GameObjects.GameObject,
+    obj2: Phaser.GameObjects.GameObject
+  ) {
+    console.log(obj1, obj2);
   }
 }
