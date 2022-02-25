@@ -2,7 +2,6 @@ import Phaser from "phaser";
 import Preloader from "./scenes/Preloader";
 import GameScene from "./scenes/GameScene";
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
-
 const ZOOM = 1;
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -20,7 +19,7 @@ const config: Phaser.Types.Core.GameConfig = {
   physics: {
     default: "matter",
     matter: {
-      debug: true,
+      debug: process.env.NODE_ENV !== "production",
       gravity: { y: 0 },
     },
   },
