@@ -1,27 +1,19 @@
-import { Console } from "console";
-import Player from "./entities/Player";
+import Player from "../characters/Player";
 
-export default class MainScene extends Phaser.Scene {
+export default class GameScene extends Phaser.Scene {
   constructor(private player: Player) {
-    super("MainScene");
+    super("GameScene");
   }
 
   preload() {
     Player.preload(this);
-    this.load.image(
-      "_tiles",
-      `${process.env.PUBLIC_URL}/assets/maps/source/mountain_landscape.png`
-    );
-    this.load.tilemapTiledJSON(
-      "_map",
-      `${process.env.PUBLIC_URL}/assets/maps/map.json`
-    );
   }
 
   create() {
     this.createEmitter();
   }
   createEmitter() {
+    // this.physics.world.setBounds(, 0, 1904, 921);
     const map = this.make.tilemap({ key: "_map" });
     const tileset = map.addTilesetImage(
       "mountain_landscape",
@@ -31,14 +23,22 @@ export default class MainScene extends Phaser.Scene {
       0,
       0
     );
-    const layer1 = map.createLayer("land", tileset, 0, 0);
-    const layer2 = map.createLayer("tile", tileset, 0, 0);
-    const layer3 = map.createLayer("grass", tileset, 0, 0);
-    layer3.setCollisionByProperty({ collides: true });
-    this.matter.world.convertTilemapLayer(layer3);
+    const miscSet = map.addTilesetImage("lpc_misc", "_misc", 16, 16, 0, 0);
+    map.createLayer("land", tileset, 0, 0);
+    map.createLayer("tile", tileset, 0, 0);
+    map.createLayer("grass", tileset, 0, 0);
+    map.createLayer("misc_top", miscSet, 0, 0).setDepth(1);
+    const collideLayer = map
+      .createLayer("misc_bottom", miscSet, 0, 0)
+      .setCollisionByProperty({ collides: true });
+    this.matter.world.convertTilemapLayer(collideLayer);
+    this.initPlayer();
+    this.cameras.main.startFollow(this.player, true);
+  }
+  initPlayer() {
     this.player = new Player({
       scene: this,
-      x: 900,
+      x: 1000,
       y: 950,
       texture: "_charactor",
       frame: "ranger_idle_1",

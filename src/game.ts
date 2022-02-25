@@ -1,16 +1,20 @@
 import Phaser from "phaser";
-import MainScene from "./Scene";
+import Preloader from "./scenes/Preloader";
+import GameScene from "./scenes/GameScene";
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
 const config: Phaser.Types.Core.GameConfig = {
-  width: 2048,
-  height: 2048,
-  backgroundColor: "#999999",
   type: Phaser.AUTO,
+  width: window.innerWidth,
+  height: window.innerHeight,
+  backgroundColor: "#999999",
   parent: "",
-  scene: [MainScene],
+  scene: [Preloader, GameScene],
   scale: {
     zoom: 2,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: window.innerWidth / 2 - 8,
+    height: window.innerHeight / 2 - 8,
   },
   physics: {
     default: "matter",

@@ -1,9 +1,9 @@
 import React from "react";
-import MainGame from "./TestGame";
-import MainScene from "./TestGame/Scene";
+import MainGame from "../game";
+import MainScene from "../scenes/GameScene";
 
 const handleClick = () => {
-  const scene = MainGame.scene.keys["MainScene"] as MainScene;
+  const scene = MainGame.scene.keys["GameScene"] as MainScene;
   scene.createEmitter();
 };
 
