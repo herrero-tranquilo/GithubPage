@@ -1,0 +1,132 @@
+{
+  "anims": [
+    {
+      "key": "_charactor_walk_down",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_down_1"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_down_2"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_down_3"
+        }
+      ]
+    },
+    {
+      "key": "_charactor_walk_left",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_left_1"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_left_2"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_left_3"
+        }
+      ]
+    },
+    {
+      "key": "_charactor_walk_right",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_right_1"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_right_2"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_right_3"
+        }
+      ]
+    },
+    {
+      "key": "_charactor_walk_up",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_up_1"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_up_2"
+        },
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_up_3"
+        }
+      ]
+    },
+    {
+      "key": "_charactor_idle_down",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_down_2"
+        }
+      ]
+    },
+    {
+      "key": "_charactor_idle_left",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_left_2"
+        }
+      ]
+    },
+    {
+      "key": "_charactor_idle_right",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_right_2"
+        }
+      ]
+    },
+    {
+      "key": "_charactor_idle_up",
+      "type": "frames",
+      "repeat": -1,
+      "frameRate": 7,
+      "frames": [
+        {
+          "key": "_charactor",
+          "frame": "charactor_walk_up_2"
+        }
+      ]
+    }
+  ]
+}
