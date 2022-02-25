@@ -3,6 +3,7 @@ import Preloader from "./scenes/Preloader";
 import GameScene from "./scenes/GameScene";
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 
+const ZOOM = 1;
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: window.innerWidth,
@@ -11,10 +12,10 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: "",
   scene: [Preloader, GameScene],
   scale: {
-    zoom: 2,
+    zoom: ZOOM,
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: window.innerWidth / 2 - 8,
-    height: window.innerHeight / 2 - 8,
+    width: window.innerWidth / ZOOM - 8,
+    height: window.innerHeight / ZOOM - 8,
   },
   physics: {
     default: "matter",

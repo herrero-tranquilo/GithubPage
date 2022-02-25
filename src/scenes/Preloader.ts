@@ -7,12 +7,8 @@ export default class Preloader extends Phaser.Scene {
 
   preload() {
     this.load.image(
-      "_tiles",
-      `${process.env.PUBLIC_URL}/assets/maps/source/mountain_landscape.png`
-    );
-    this.load.image(
-      "_misc",
-      `${process.env.PUBLIC_URL}/assets/maps/source/lpc_misc.png`
+      "_safari2",
+      `${process.env.PUBLIC_URL}/assets/maps/source/safari2.png`
     );
     this.load.tilemapTiledJSON(
       "_map",

@@ -1,0 +1,163 @@
+{
+  "frames": [
+    {
+      "filename": "charactor_walk_down_1",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 0,
+        "y": 0
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_down_2",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 72,
+        "y": 0
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_down_3",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 144,
+        "y": 0
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_left_1",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 0,
+        "y": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_left_2",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 72,
+        "y": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_left_3",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 144,
+        "y": 96
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_right_1",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 0,
+        "y": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_right_2",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 72,
+        "y": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_right_3",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 144,
+        "y": 192
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_up_1",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 0,
+        "y": 288
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_up_2",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 72,
+        "y": 288
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    },
+    {
+      "filename": "charactor_walk_up_3",
+      "frame": {
+        "w": 72,
+        "h": 96,
+        "x": 144,
+        "y": 288
+      },
+      "anchor": {
+        "x": 0.5,
+        "y": 0.6
+      }
+    }
+  ],
+  "meta": {
+    "description": ""
+  }
+}

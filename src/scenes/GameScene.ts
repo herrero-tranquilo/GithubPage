@@ -1,4 +1,4 @@
-import Player from "../characters/Player";
+import Player from "../characters/Player2";
 
 export default class GameScene extends Phaser.Scene {
   constructor(private player: Player) {
@@ -15,22 +15,12 @@ export default class GameScene extends Phaser.Scene {
   createEmitter() {
     // this.physics.world.setBounds(, 0, 1904, 921);
     const map = this.make.tilemap({ key: "_map" });
-    const tileset = map.addTilesetImage(
-      "mountain_landscape",
-      "_tiles",
-      16,
-      16,
-      0,
-      0
-    );
-    const miscSet = map.addTilesetImage("lpc_misc", "_misc", 16, 16, 0, 0);
-    map.createLayer("land", tileset, 0, 0);
-    map.createLayer("tile", tileset, 0, 0);
-    map.createLayer("grass", tileset, 0, 0);
-    map.createLayer("misc_top", miscSet, 0, 0).setDepth(1);
+    const tileset = map.addTilesetImage("safari2", "_safari2", 16, 16, 0, 0);
+    map.createLayer("land", [tileset], 0, 0);
     const collideLayer = map
-      .createLayer("misc_bottom", miscSet, 0, 0)
+      .createLayer("collide", [tileset], 0, 0)
       .setCollisionByProperty({ collides: true });
+    map.createLayer("overlap", [tileset], 0, 0).setDepth(1);
     this.matter.world.convertTilemapLayer(collideLayer);
     this.initPlayer();
     this.cameras.main.startFollow(this.player, true);
