@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/GithubPage/static/css/main.c5caadb8.css",
-    "main.js": "/GithubPage/static/js/main.8dd81ab5.js",
+    "main.js": "/GithubPage/static/js/main.cf114cfb.js",
     "static/js/27.f58ea675.chunk.js": "/GithubPage/static/js/27.f58ea675.chunk.js",
     "index.html": "/GithubPage/index.html"
   },
   "entrypoints": [
     "static/css/main.c5caadb8.css",
-    "static/js/main.8dd81ab5.js"
+    "static/js/main.cf114cfb.js"
   ]
 }
