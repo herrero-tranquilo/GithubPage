@@ -1,46 +1,31 @@
-import Player from "../characters/Player2";
+import Player from "../characters/Player";
+import Map from "../maps/Map.default";
 
 export default class GameScene extends Phaser.Scene {
-  constructor(private player: Player) {
+  constructor(private player: Player, private map: Map) {
     super("GameScene");
   }
-
   preload() {
+    Map.preload(this);
     Player.preload(this);
   }
-
   create() {
     this.createEmitter();
   }
-  createEmitter() {
-    // this.physics.world.setBounds(, 0, 1904, 921);
-    const map = this.make.tilemap({ key: "_map" });
-    const tileset = map.addTilesetImage("safari2", "_safari2", 16, 16, 0, 0);
-    map.createLayer("land", [tileset], 0, 0);
-    const collideLayer = map
-      .createLayer("collide", [tileset], 0, 0)
-      .setCollisionByProperty({ collides: true });
-    map.createLayer("overlap", [tileset], 0, 0).setDepth(1);
-    this.matter.world.convertTilemapLayer(collideLayer);
-    this.initPlayer();
-    this.cameras.main.startFollow(this.player, true);
+  update() {
+    this.player.update();
   }
-  initPlayer() {
+  createEmitter() {
+    this.map = new Map({
+      scene: this,
+    });
     this.player = new Player({
       scene: this,
       x: 1000,
       y: 950,
-      texture: "_charactor",
-      frame: "ranger_idle_1",
+      texture: "_character",
+      frame: "character_walk_down_2",
     });
-    this.player.inputKeys = this.input.keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    });
-  }
-  update() {
-    this.player.update();
+    this.cameras.main.startFollow(this.player, true);
   }
 }

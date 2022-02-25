@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import Preloader from "./scenes/Preloader";
 import GameScene from "./scenes/GameScene";
 import PhaserMatterCollisionPlugin from "phaser-matter-collision-plugin";
 const ZOOM = 1;
@@ -9,7 +8,7 @@ const config: Phaser.Types.Core.GameConfig = {
   height: window.innerHeight,
   backgroundColor: "#999999",
   parent: "",
-  scene: [Preloader, GameScene],
+  scene: [GameScene],
   scale: {
     zoom: ZOOM,
     autoCenter: Phaser.Scale.CENTER_BOTH,
