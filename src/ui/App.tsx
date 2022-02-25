@@ -4,11 +4,14 @@ import MainScene from "../scenes/GameScene";
 
 const handleClick = () => {
   const scene = MainGame.scene.keys["GameScene"] as MainScene;
-  scene.createEmitter();
 };
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <button onClick={handleClick}>Profile</button>
+    </div>
+  );
 }
 
 export default App;
