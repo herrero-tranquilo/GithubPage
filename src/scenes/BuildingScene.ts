@@ -67,9 +67,14 @@ export default class BuildingScene extends Phaser.Scene {
     );
     this.map.createLayer("floor", [tilesetInterior], 0, 0);
     this.map.createLayer("wall", [tilesetInterior], 0, 0);
-    this.map.createLayer("furniture", [tilesetFurniture], 0, 0);
+    this.map
+      .createLayer("furniture", [tilesetFurniture], 0, 0)
+      .setCollisionByProperty({ collides: true });
+    this.map.createLayer("overlap", [tilesetFurniture], 0, 0).setDepth(1);
     this.map.createLayer("object", [tilesetFurniture], 0, 0);
-    // this.matter.world.convertTilemapLayer(map.getLayer("collide").tilemapLayer);
+    this.matter.world.convertTilemapLayer(
+      this.map.getLayer("furniture").tilemapLayer
+    );
     this.matter.world.setBounds(
       0,
       0,
