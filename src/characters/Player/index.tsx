@@ -30,6 +30,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     super(scene.matter.world, x, y, texture, frame);
     this.scene.add.existing(this);
     const { Body, Bodies } = Phaser.Physics.Matter.Matter;
+
     let playerCollider = Bodies.rectangle(this.x, this.y, 32, 52, {
       isSensor: false,
       label: "playerCollider",
