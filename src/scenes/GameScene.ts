@@ -1,12 +1,25 @@
 import Player from "../characters/Player";
 
+const config = {
+  key: "GameScene",
+  // active: false,
+  // visible: true,
+  // pack: false,
+  // cameras: null,
+  // map: {},
+  // physics: {},
+  // loader: {},
+  // plugins: false,
+  // input: {}
+};
+
 export default class GameScene extends Phaser.Scene {
   constructor(
     private player: Phaser.Physics.Matter.Sprite,
     private map: Phaser.Tilemaps.Tilemap,
     private spawnPoint: Phaser.Types.Tilemaps.TiledObject
   ) {
-    super("GameScene");
+    super(config);
   }
   preload() {
     this.load.image(
@@ -50,11 +63,31 @@ export default class GameScene extends Phaser.Scene {
         );
       }
     }
+    // console.log(this.cursor.left.isDown);
   }
   createEmitter() {
     this.renderMap();
     this.setSpawnPoint();
     this.spawnPlayer();
+    // this.cursor = this.input.keyboard.createCursorKeys();
+
+    // this.input.on(
+    //   "pointerdown",
+    //   (pointer: Phaser.Input.Pointer) => {
+    //     console.log(this.player);
+    //     console.log(pointer);
+    //     console.log(this.game.input.mousePointer);
+    //     // // cursor.setVisible(true).setPosition(pointer.x, pointer.y);
+
+    //     // this.physics.moveToObject(clown, pointer, 240);
+    //     // Phaser.Utils.Array.Each(
+    //     //     blocks.getChildren(),
+    //     //     this.physics.moveToObject,
+    //     //     this.physics,
+    //     //     pointer, 120);
+    //   },
+    //   this
+    // );
   }
   private renderMap() {
     this.map = this.make.tilemap({ key: "_map" });
@@ -74,14 +107,6 @@ export default class GameScene extends Phaser.Scene {
       this.map.widthInPixels,
       this.map.heightInPixels
     );
-
-    // const portals = map.createFromObjects("portal", {});
-    // portals.forEach((portal) => {
-    //   portal.
-    //   // this.matter.world.c(portal);
-    // });
-
-    // this.matter.world.on("collisionstart", this.handlePlayerPortalCollision);
   }
   setSpawnPoint() {
     this.spawnPoint = this.map.findObject(
@@ -97,6 +122,7 @@ export default class GameScene extends Phaser.Scene {
         y: this.spawnPoint.y,
         texture: "_character",
         frame: "character_walk_down_2",
+        map: this.map,
       });
       this.cameras.main.startFollow(this.player, true);
     } else {

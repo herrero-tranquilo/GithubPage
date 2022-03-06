@@ -32,5 +32,8 @@ const config: Phaser.Types.Core.GameConfig = {
       },
     ],
   },
+  loader: {
+    maxParallelDownloads: 4,
+  },
 };
 export default new Phaser.Game(config);

@@ -96,6 +96,7 @@ export default class BuildingScene extends Phaser.Scene {
         y: this.spawnPoint.y,
         texture: "_character",
         frame: "character_walk_down_2",
+        map: this.map,
       });
       this.cameras.main.startFollow(this.player, true);
     } else {
