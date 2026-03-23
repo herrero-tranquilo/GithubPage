@@ -1,0 +1,96 @@
+{
+  "tileset": "safari2",
+  "tileSize": 16,
+  "columns": 48,
+  "objects": {
+    "big_tree": {
+      "name": "큰 나무",
+      "width": 9,
+      "height": 10,
+      "tilesetOrigin": { "row": 26, "col": 0 },
+      "collide": {
+        "description": "전체 9x10 영역",
+        "rows": "26-35",
+        "cols": "0-8"
+      },
+      "overlap": {
+        "description": "상단 캐노피 6줄만 (플레이어 위에 렌더링)",
+        "rows": "26-31",
+        "cols": "0-8"
+      }
+    },
+    "big_rock": {
+      "name": "큰 바위",
+      "width": 6,
+      "height": 6,
+      "tilesetOrigin": { "row": 6, "col": 18 },
+      "collide": {
+        "description": "전체 6x6 영역",
+        "rows": "6-11",
+        "cols": "18-23"
+      },
+      "overlap": null
+    },
+    "grass": {
+      "name": "장식 풀",
+      "width": 3,
+      "height": 3,
+      "tilesetOrigin": { "row": 0, "col": 18 },
+      "collide": null,
+      "overlap": null,
+      "land": {
+        "description": "land 레이어에만 배치 (충돌 없음, 밟을 수 있음)",
+        "rows": "0-2",
+        "cols": "18-20"
+      }
+    },
+    "sign": {
+      "name": "입간판",
+      "width": 4,
+      "height": 3,
+      "mapOrigin": { "x": 70, "y": 155, "note": "확장맵 기준 오프셋 적용 전 원본 (8, 93)" },
+      "collide": {
+        "description": "일부 타일은 수평 반전(flipH). 2147485254=1606+flipH, 2147485302=1654+flipH 등",
+        "tiles": [
+          [2147485255, 2147485254, 166, 167],
+          [2147485303, 2147485302, 214, 215],
+          [2147485351, 2147485350, 262, 263]
+        ]
+      },
+      "overlap": null
+    },
+    "fence_post": {
+      "name": "나무담장기둥 (단일 2x3)",
+      "width": 2,
+      "height": 3,
+      "tilesetOrigin": { "row": 33, "col": 21 },
+      "collide": {
+        "description": "2x3 기둥 1개. col 21+23 조합 (col 22는 기둥 사이 빈 공간이므로 스킵)",
+        "rows": "33-35",
+        "cols": "21,23",
+        "tiles": [
+          [1606, 1608],
+          [1654, 1656],
+          [1702, 1704]
+        ]
+      },
+      "overlap": null
+    },
+    "house": {
+      "name": "건물 (포켓몬센터 스타일)",
+      "width": 18,
+      "height": 18,
+      "tilesetOrigin": { "row": 4, "col": 13 },
+      "collide": {
+        "description": "연속 타일 블록. rows 4-21, cols 13-30. 타일ID = row*48+col+1. (217~1050)",
+        "rows": "4-21",
+        "cols": "13-30"
+      },
+      "overlap": {
+        "description": "상단 12줄만 overlap (지붕 부분)",
+        "rows": "4-15",
+        "cols": "13-30"
+      }
+    }
+  }
+}

@@ -1,3 +1,17 @@
+.coord-display {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #0f0;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: monospace;
+  z-index: 100;
+  pointer-events: none;
+}
+
 .profile-btn {
   position: fixed;
   top: 12px;

@@ -1,12 +1,31 @@
-import React, { useState } from "react";
-import "../game";
+import React, { useState, useEffect } from "react";
+import MainGame from "../game";
 import "./App.css";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const scene = MainGame.scene.keys["GameScene"] as any;
+      if (scene?.player) {
+        const map = scene.map as Phaser.Tilemaps.Tilemap;
+        const land = map?.getLayer("land")?.tilemapLayer;
+        if (land) {
+          const tile = land.worldToTileXY(scene.player.x, scene.player.y);
+          setCoords({ x: tile.x, y: tile.y });
+        }
+      }
+    }, 200);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
+      <div className="coord-display">
+        tile: {coords.x}, {coords.y}
+      </div>
       <button className="profile-btn" onClick={() => setIsOpen(true)}>
         Profile
       </button>
