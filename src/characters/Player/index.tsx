@@ -53,14 +53,22 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
       `${process.env.PUBLIC_URL}/assets/characters/player/character_anim.json`
     );
   }
+  private isKeyboardActive(): boolean {
+    const { W, S, A, D } = this.keyEvents;
+    return !!(W?.isDown || S?.isDown || A?.isDown || D?.isDown);
+  }
+
   update() {
+    if (this.isKeyboardActive()) {
+      this.movePath = [];
+      this.moveToTarget = undefined;
+    }
+
     this.move(this.keyEvents);
 
-    let dx = 0;
-    let dy = 0;
     if (this.moveToTarget) {
-      dx = this.moveToTarget.x - this.x;
-      dy = this.moveToTarget.y - this.y;
+      let dx = this.moveToTarget.x - this.x;
+      let dy = this.moveToTarget.y - this.y;
       if (Math.abs(dx) < 5) {
         dx = 0;
       }
