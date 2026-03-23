@@ -1,6 +1,8 @@
 import Player from "../characters/Player";
 
 export default class BuildingScene extends Phaser.Scene {
+  private wasOnPortal: boolean = false;
+
   constructor(
     private player: Phaser.Physics.Matter.Sprite,
     private map: Phaser.Tilemaps.Tilemap,
@@ -33,24 +35,22 @@ export default class BuildingScene extends Phaser.Scene {
       (obj) => obj.name === "Door Point"
     );
     if (doorPoint && doorPoint.x && doorPoint.y) {
-      if (
-        Phaser.Geom.Intersects.RectangleToRectangle(
-          this.player.getBounds(),
-          new Phaser.Geom.Rectangle(
-            doorPoint.x,
-            doorPoint.y,
-            doorPoint.width,
-            doorPoint.height
-          )
+      const isOnPortal = Phaser.Geom.Intersects.RectangleToRectangle(
+        this.player.getBounds(),
+        new Phaser.Geom.Rectangle(
+          doorPoint.x,
+          doorPoint.y,
+          doorPoint.width,
+          doorPoint.height
         )
-      ) {
+      );
+
+      if (isOnPortal && !this.wasOnPortal) {
         this.scene.scene.registry.set("before-scene", this.scene);
         this.scene.switch("GameScene");
-        this.player.setPosition(
-          this.player.x,
-          this.player.y - this.player.height / 3
-        );
       }
+
+      this.wasOnPortal = isOnPortal;
     }
   }
   createEmitter() {
