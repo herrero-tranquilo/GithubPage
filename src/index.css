@@ -9,6 +9,13 @@ body {
 #root {
   position: absolute;
   z-index: 9999;
+  pointer-events: none;
+}
+
+#root button,
+#root .drawer-overlay.open,
+#root .drawer.open {
+  pointer-events: auto;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
