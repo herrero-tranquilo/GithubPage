@@ -7,6 +7,38 @@ interface TilePosition {
 
 const toKey = (x: number, y: number) => `${x}x${y}`;
 
+const findNearestWalkable = (
+  pos: Phaser.Math.Vector2,
+  groundLayer: Phaser.Tilemaps.TilemapLayer,
+  collideLayer: Phaser.Tilemaps.TilemapLayer
+): Phaser.Math.Vector2 | null => {
+  // BFS로 가장 가까운 walkable 타일 탐색
+  const visited = new Set<string>();
+  const queue = [{ x: pos.x, y: pos.y }];
+  visited.add(toKey(pos.x, pos.y));
+
+  while (queue.length > 0) {
+    const { x, y } = queue.shift()!;
+    const neighbors = [
+      { x, y: y - 1 },
+      { x: x + 1, y },
+      { x, y: y + 1 },
+      { x: x - 1, y },
+    ];
+    for (const n of neighbors) {
+      const key = toKey(n.x, n.y);
+      if (visited.has(key)) continue;
+      visited.add(key);
+      if (!groundLayer.getTileAt(n.x, n.y)) continue;
+      if (!collideLayer.getTileAt(n.x, n.y)) {
+        return new Phaser.Math.Vector2(n.x, n.y);
+      }
+      queue.push(n);
+    }
+  }
+  return null;
+};
+
 const findPath = (
   start: Phaser.Math.Vector2,
   target: Phaser.Math.Vector2,
@@ -17,7 +49,16 @@ const findPath = (
     return [];
   }
   if (collideLayer.getTileAt(target.x, target.y)) {
-    return [];
+    const nearest = findNearestWalkable(target, groundLayer, collideLayer);
+    if (!nearest) return [];
+    target = nearest;
+  }
+
+  // 시작 위치가 collide 타일 위일 때 (나무 가지 뒤 등) 인접 walkable 타일로 보정
+  if (collideLayer.getTileAt(start.x, start.y)) {
+    const nearest = findNearestWalkable(start, groundLayer, collideLayer);
+    if (!nearest) return [];
+    start = nearest;
   }
 
   const queue: TilePosition[] = [];
@@ -77,6 +118,10 @@ const findPath = (
     }
   }
 
+  if (!(targetKey in parentForKey)) {
+    return [];
+  }
+
   const path: Phaser.Math.Vector2[] = [];
 
   let currentKey = targetKey;
@@ -93,7 +138,6 @@ const findPath = (
     currentKey = key;
     currentPos = position;
   }
-  console.log(path);
   return path.reverse();
 };
 
