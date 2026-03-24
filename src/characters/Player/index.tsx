@@ -3,7 +3,7 @@ import findPath from "../../utils/findPath";
 
 type EnableKeys = "W" | "S" | "A" | "D";
 type EnableKeyEvents = {
-  [key in EnableKeys]?: Phaser.Input.Keyboard.Key | { isDown: boolean };
+  [key in EnableKeys]?: Phaser.Input.Keyboard.Key | {isDown: boolean};
 };
 type Direction = "up" | "down" | "left" | "right";
 
@@ -12,10 +12,10 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
   private vector = new Phaser.Math.Vector2();
   private direction: Direction = "down";
   private keyEvents: EnableKeyEvents = {
-    W: { isDown: false },
-    S: { isDown: false },
-    A: { isDown: false },
-    D: { isDown: false },
+    W: {isDown: false},
+    S: {isDown: false},
+    A: {isDown: false},
+    D: {isDown: false},
   };
 
   private movePath: Phaser.Math.Vector2[] = [];
@@ -54,7 +54,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     );
   }
   private isKeyboardActive(): boolean {
-    const { W, S, A, D } = this.keyEvents;
+    const {W, S, A, D} = this.keyEvents;
     return !!(W?.isDown || S?.isDown || A?.isDown || D?.isDown);
   }
 
@@ -85,15 +85,15 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         this.moveToTarget = undefined;
       }
       this.move({
-        W: { isDown: dy < 0 },
-        S: { isDown: dy > 0 },
-        A: { isDown: dx < 0 },
-        D: { isDown: dx > 0 },
+        W: {isDown: dy < 0},
+        S: {isDown: dy > 0},
+        A: {isDown: dx < 0},
+        D: {isDown: dx > 0},
       });
     }
     this.animate();
   }
-  move({ W, S, A, D }: EnableKeyEvents) {
+  move({W, S, A, D}: EnableKeyEvents) {
     this.vector.y = 0;
     this.vector.x = 0;
 
@@ -116,7 +116,7 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
     this.setVelocity(this.vector.x, this.vector.y);
   }
   makeBody() {
-    const { Body, Bodies } = Phaser.Physics.Matter.Matter;
+    const {Body, Bodies} = Phaser.Physics.Matter.Matter;
     const playerCollider = Bodies.rectangle(this.x, this.y, 32, 52, {
       isSensor: false,
       label: "playerCollider",
@@ -190,19 +190,21 @@ export default class Player extends Phaser.Physics.Matter.Sprite {
         this.moveToTarget = undefined;
       }
       this.move({
-        W: { isDown: dy < 0 },
-        S: { isDown: dy > 0 },
-        A: { isDown: dx < 0 },
-        D: { isDown: dx > 0 },
+        W: {isDown: dy < 0},
+        S: {isDown: dy > 0},
+        A: {isDown: dx < 0},
+        D: {isDown: dx > 0},
       });
     }
   }
   setMovePoint(
     map: Phaser.Tilemaps.Tilemap,
-    { worldX, worldY }: Phaser.Input.Pointer
+    {worldX, worldY}: Phaser.Input.Pointer
   ) {
-    const landLayer = map.getLayer("land").tilemapLayer;
-    const collideLayer = map.getLayer("collide").tilemapLayer;
+    const landLayer = (map.getLayer("land") || map.getLayer("floor"))
+      .tilemapLayer;
+    const collideLayer = (map.getLayer("collide") || map.getLayer("furniture"))
+      .tilemapLayer;
 
     const startVec = landLayer.worldToTileXY(this.x, this.y);
     const targetVec = landLayer.worldToTileXY(worldX, worldY);
